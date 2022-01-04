@@ -1,1 +1,117 @@
+#sidebarCollapse {
+  width: 40px;
+  height: 40px;
+  background: #f5f5f5;
+}
 
+#sidebarCollapse span {
+  width: 80%;
+  height: 2px;
+  margin: 0 auto;
+  display: block;
+  background: #555;
+  -webkit-transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
+  transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
+}
+
+#sidebarCollapse span:first-of-type {
+  /* rotate first one */
+  -webkit-transform: rotate(45deg) translate(2px, 2px);
+          transform: rotate(45deg) translate(2px, 2px);
+}
+
+#sidebarCollapse span:nth-of-type(2) {
+  /* second one is not visible */
+  opacity: 0;
+}
+
+#sidebarCollapse span:last-of-type {
+  /* rotate third one */
+  -webkit-transform: rotate(-45deg) translate(1px, -1px);
+          transform: rotate(-45deg) translate(1px, -1px);
+}
+
+#sidebarCollapse.active span {
+  /* no rotation */
+  -webkit-transform: none;
+          transform: none;
+  /* all bars are visible */
+  opacity: 1;
+  margin: 5px auto;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-perspective: 1500px;
+          perspective: 1500px;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  background: #7386D5;
+  color: #fff;
+  -webkit-transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  -webkit-transform-origin: center left;
+          transform-origin: center left;
+  /* Set the transformed position of sidebar to center left side. */
+}
+
+#sidebar.active {
+  margin-left: -250px;
+  -webkit-transform: rotateY(100deg);
+          transform: rotateY(100deg);
+  /* Rotate sidebar vertically by 100 degrees. */
+}
+
+@media screen and (max-width: 768px) {
+  /* Reversing the behavior of the sidebar: 
+       it'll be rotated vertically and off canvas by default, 
+       collapsing in on toggle button click with removal of 
+       the vertical rotation.   */
+  #sidebar {
+    margin-left: -250px;
+    -webkit-transform: rotateY(100deg);
+            transform: rotateY(100deg);
+  }
+  #sidebar.active {
+    margin-left: 0;
+    -webkit-transform: none;
+            transform: none;
+  }
+  /* Reversing the behavior of the bars: 
+       Removing the rotation from the first,
+       last bars and reappear the second bar on default state, 
+       and giving them a vertical margin */
+  #sidebarCollapse span:first-of-type,
+  #sidebarCollapse span:nth-of-type(2),
+  #sidebarCollapse span:last-of-type {
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1;
+    margin: 5px auto;
+  }
+  /* Removing the vertical margin and make the first and last bars rotate again when the sidebar is open, hiding the second bar */
+  #sidebarCollapse.active span {
+    margin: 0 auto;
+  }
+  #sidebarCollapse.active span:first-of-type {
+    -webkit-transform: rotate(45deg) translate(2px, 2px);
+            transform: rotate(45deg) translate(2px, 2px);
+  }
+  #sidebarCollapse.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  #sidebarCollapse.active span:last-of-type {
+    -webkit-transform: rotate(-45deg) translate(1px, -1px);
+            transform: rotate(-45deg) translate(1px, -1px);
+  }
+}
+/*# sourceMappingURL=styles.css.map */
