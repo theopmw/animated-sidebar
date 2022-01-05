@@ -36,8 +36,9 @@
     margin: 5px auto;
 }
 
-.sidebar-wrapper {
+.wrapper {
     display: flex;
+    width: 100%;
     align-items: stretch;
     perspective: 1500px; 
 }
@@ -45,11 +46,12 @@
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    height: 100vh;
+    // height: 100vh;
     background: #7386D5;
     color: #fff;
     transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
     transform-origin: center left; /* Set the transformed position of sidebar to center left side. */
+    z-index: 10001;
 }
 
 #sidebar.active {
@@ -67,6 +69,83 @@
 
 .nav-link {
     color: #fff;
+}
+
+// -------------- HERO
+
+.hero-wrapper {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    // display: flex;
+    width: 100%;
+
+    &, * {
+        cursor: pointer;
+    }
+
+    .cursor {
+        position: fixed;
+        background: #2128bd;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: -5px 0 0 -5px;
+        will-change: transform;
+        user-select: none;
+        pointer-events: none;
+        z-index: 10000;
+    }
+
+    .shapes {
+        position: absolute;
+        height: 100%;
+        width: 100%; 
+        background: #2128bd;
+        overflow: hidden;
+
+        .shape {
+            will-change: transform;
+            position: absolute;
+            border-radius: 50%;
+
+            $shapes: (#005ffe: 650px, #e28446: 440px, #1c7cac: 270px);
+            
+            @each $color, $size in $shapes {
+                &.shape-#{index($shapes, ($color $size))} {
+                    background: $color;
+                    width: $size;
+                    height: $size;
+                    margin: (-$size/2) 0 0 (-$size/2);
+                }
+            }
+            
+        }
+        
+        
+    }
+    .hero-content {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: block;
+        // justify-content: center;
+        // align-items: center;
+        height: 100%;
+        width: 100%;
+        background: #fff;
+        mix-blend-mode: screen;
+
+        .landing-heading {
+            font-size: 10em;
+            font-weight: 900;
+            color: #000;
+            margin: 0;
+        }
+    }
+    
+    
 }
 
 
